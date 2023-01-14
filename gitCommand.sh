@@ -8,6 +8,34 @@
 # Notes:        https://prograshi.com/general/git/how-to-use-git-fetch/ 
 #--------------------------------------------------
 
+#--------------------------------------------------
+# ec2-user@:amazonlinux$ git --version
+# git version 2.25.1
+# ec2-user@:amazonlinux$
+#--------------------------------------------------
+# git --version
+
+
+# --------------------------------------------------
+# git commands
+#
+# ec2-user@:amazonlinux$ git
+# add               clone             help              reflog            sparse-checkout
+# am                commit            init              remote            stage
+# apply             config            instaweb          repack            stash
+# archive           describe          lfs               replace           status
+# bisect            diff              log               request-pull      submodule
+# blame             difftool          merge             reset             switch
+# branch            fetch             mergetool         restore           tag
+# bundle            format-patch      mv                revert            whatchanged
+# checkout          fsck              notes             rm                worktree
+# cherry            gc                pull              send-email
+# cherry-pick       gitk              push              shortlog
+# citool            grep              range-diff        show
+# clean             gui               rebase            show-branch
+# ec2-user@:amazonlinux$ git
+# --------------------------------------------------
+
 
 #--------------------------------------------------
 # Git の基本的なコマンド
@@ -24,8 +52,17 @@
 #--------------------------------------------------
 # Gitの設定
 #--------------------------------------------------
+# ローカルリポジトリから作成する場合
+# リモートリポジトリに対してpushやpullができるようにする
+# git init # リポジトリを作成する
 # git init repository_name # リポジトリを作成する
+# git remote add origin https://github.com/darcy/amazonlinux.git # リモートリポジトリを追加する
+
+# GitHubでリポジトリを新規作成する場合
+#「Initialize this repository with a README」にチェックを入れると、リモートリポジトリの設定が自動的に行われます。そのため、git cloneしてきた後にリモートリポジトリの設定を行わなくてもpushやpullが使えるんですね。
 # git clone repository_name # リポジトリをクローンする
+
+#--------------------------------------------------
 # git config key value # 設定を行う
 # git config --global user.name "user_name" # ユーザー名を設定する
 # git config --global user.email "user_email" # メールアドレスを設定する
@@ -37,6 +74,11 @@
 # git config --global alias.co checkout # checkoutのエイリアスをcoに設定する
 # git config --global alias.ci commit # commitのエイリアスをciに設定する
 # git config --global alias.st status # statusのエイリアスをstに設定する
+
+
+#--------------------------------------------------
+# git status # リポジトリの状態を確認する
+#--------------------------------------------------
 
 
 #--------------------------------------------------
@@ -70,13 +112,30 @@
 
 
 #--------------------------------------------------
-# 上流ブランチ
-# リモートレポジトリの追加
-# 上流ブランチとは、ローカルブランチがどのリモートブランチを追跡しているかを示すものです。
-# 上流ブランチ（Upstream branch）」とは、あるローカルブランチが、履歴を追跡するように設定したリモートブランチの事
-# https://www-creators.com/archives/4931
+# 上流ブランチ（Upstream branch）とは
+#   ローカルブランチがどのリモートブランチを追跡しているかを示す。
+#   あるローカルブランチが、履歴を追跡するように設定したリモートブランチの事。
+# 　上流ブランチを設定することにより git pull でリモートブランチの内容を取得することができるようになります。
+# 　https://www-creators.com/archives/4931
 #--------------------------------------------------
+# git branch -u origin/main main # ローカルブランチをリモートブランチに追従させる
+# git branch -u origin/main # ローカルブランチをリモートブランチに追従させる
+# git branch -vv # ローカルブランチの上流ブランチを確認する
 
+#--------------------------------------------------
+# リモート追跡ブランチ
+#   リモートリポジトリのブランチをローカルリポジトリにコピーしたもの
+#   特定のリモートブランチの状態をそのままコピーしたローカルブランチのこと
+#
+# トラッキングブランチ
+#   特定のリモートブランチの状態をそのままコピーしたローカルブランチのこと
+#--------------------------------------------------
+# git branch -a # ローカルブランチとリモートブランチを表示する
+# git branch -r # リモートブランチのみを表示する
+# git checkout -b <branch_name> # ローカルブランチを作成する
+# git checkout -b <branch_name> origin/<branch_name> # リモートブランチをローカルブランチにコピーする
+
+#--------------------------------------------------
 #
 # git diff  # ワーキングツリーの差分
 
@@ -86,15 +145,6 @@
 # git log -2  # 最新2つのコミットログを表示
 # git log --oneline --graph  # ログをコミット毎に1行フォーマットで表示し、コミットツリーを表示する
 #--------------------------------------------------
-
-#--------------------------------------------------
-# リモート追跡ブランチ
-# 特定のリモートブランチの状態をそのままコピーしたローカルブランチのことを「トラッキングブランチ」と呼びます。
-#--------------------------------------------------
-# git branch -a # ローカルブランチとリモートブランチを表示する
-# git branch -r # リモートブランチのみを表示する
-# git checkout -b <branch_name> # ローカルブランチを作成する
-# git checkout -b <branch_name> origin/<branch_name> # リモートブランチをローカルブランチにコピーする
 
 
 #--------------------------------------------------
@@ -118,8 +168,12 @@
 #--------------------------------------------------
 # git pull
 
-# ローカルレポジトリに登録してあるリモートレポジトリ名確認します。
-# git remote -v
+#--------------------------------------------------
+# originとは
+#   リモートリポジトリのアクセス先に対してGitがデフォルトでつける名前
+#   https://reasonable-code.com/git-origin/
+#--------------------------------------------------
+# git remote -v # リモートリポジトリのアクセス先の設定を確認
 # git remote -vv # 上流ブランチの有無も含めて確認する場合
 # git remote -v show
 
