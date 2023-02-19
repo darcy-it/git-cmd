@@ -177,5 +177,8 @@
 # git remote -vv # 上流ブランチの有無も含めて確認する場合
 # git remote -v show
 
+# インデックスからのみファイルを削除する（追跡対象からはずす）
+# git rm --cached <FILE_NAME>
+
 exit 0
 
