@@ -1,2 +1,3 @@
-file-a
-dir-a/
+git-cmd.sh
+git-commit.sh
+git-push.sh
